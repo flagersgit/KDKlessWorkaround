@@ -44,21 +44,20 @@ bool KDKLWA::ioGA2StartHandler(IOService *that, IOService *provider) {
   return FunctionCast(ioGA2StartHandler, callbackKDKLWA->orgIOGA2Start)(that, provider);
 }
 
-static const char *basePathSLE[] { "/System/Library/Extensions/" };
-
 /* static */
 bool KDKLWA::verifyPluginsOnDisk(IOService *ioGA2) {
   bool rval = true;
   OSString *pluginProperty;
   char pathbuf[PATH_MAX];
   
-  memset(&pathbuf, 0, sizeof(pathbuf));
-  strcat((char *)&pathbuf, (char *)basePathSLE);
+  memset(&pathbuf, 0, PATH_MAX);
+  strcpy((char *)&pathbuf, "/System/Library/Extensions/", PATH_MAX);
   
   pluginProperty = OSDynamicCast(OSString, ioGA2->getProperty("MetalPluginName"));
   if (!pluginProperty)
     return false;
   strcat((char *)&pathbuf, pluginProperty->getCStringNoCopy());
+  strcat((char *)&pathbuf, ".bundle");
   
   rval = dirExistsAtPath((char *)&pathbuf);
   
