@@ -79,6 +79,7 @@ bool KDKLWA::dirExistsAtPath(const char *path) {
   } else {
     if (vnode_vtype(vnode) != VDIR)
       rval = false;
+    vnode_put(vnode);
   }
   
   vfs_context_rele(ctxt);
