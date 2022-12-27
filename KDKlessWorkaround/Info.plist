@@ -32,6 +32,29 @@
 			<string>IOResources</string>
 			<key>IOResourceMatch</key>
 			<string>IOKit</string>
+			<key>AMDClassToPluginMap</key>
+			<dict>
+				<key>AMDRadeonX4000_AMDBaffinGraphicsAccelerator</key>
+				<string>AMDMTLBronzeDriver</string>
+				<key>AMDRadeonX4000_AMDEllesmereGraphicsAccelerator</key>
+				<string>AMDMTLBronzeDriver</string>
+				<key>AMDRadeonX5000_AMDVega10GraphicsAccelerator</key>
+				<string>AMDRadeonX5000MTLDriver</string>
+				<key>AMDRadeonX5000_AMDVega12GraphicsAccelerator</key>
+				<string>AMDRadeonX5000MTLDriver</string>
+				<key>AMDRadeonX5000_AMDVega20GraphicsAccelerator</key>
+				<string>AMDRadeonX5000MTLDriver</string>
+				<key>AMDRadeonX6000_AMDNavi10GraphicsAccelerator</key>
+				<string>AMDRadeonX6000MTLDriver</string>
+				<key>AMDRadeonX6000_AMDNavi12GraphicsAccelerator</key>
+				<string>AMDRadeonX6000MTLDriver</string>
+				<key>AMDRadeonX6000_AMDNavi14GraphicsAccelerator</key>
+				<string>AMDRadeonX6000MTLDriver</string>
+				<key>AMDRadeonX6000_AMDNavi21GraphicsAccelerator</key>
+				<string>AMDRadeonX6000MTLDriver</string>
+				<key>AMDRadeonX6000_AMDNavi23GraphicsAccelerator</key>
+				<string>AMDRadeonX6000MTLDriver</string>
+			</dict>
 		</dict>
 	</dict>
 	<key>NSHumanReadableCopyright</key>

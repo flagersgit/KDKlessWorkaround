@@ -33,10 +33,6 @@ private:
   // but we don't care about those interfaces, so just use IOService.
   static bool wrapIOGA2Start(IOService *that, IOService *provider);
   mach_vm_address_t orgIOGA2Start {0};
-  
-  static bool wrapIORegEntrySetProperty(IORegistryEntry *that, const OSSymbol *aKey, OSObject *anObject);
-  using t_IORegEntrySetProperty = bool (*)(IORegistryEntry *that, const OSSymbol *aKey, OSObject *anObject);
-  t_IORegEntrySetProperty orgIORegEntrySetProperty {nullptr};
     
   static bool verifyPluginOnDisk(IOService *ioGA2);
   
