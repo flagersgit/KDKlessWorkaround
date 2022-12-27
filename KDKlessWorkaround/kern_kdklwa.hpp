@@ -31,13 +31,16 @@ private:
     
   // argument 'that' is actually an IOGraphicsAccelerator2 sub-class,
   // but we don't care about those interfaces, so just use IOService.
-  static bool ioGA2StartHandler(IOService *that, IOService *provider);
+  static bool wrapIOGA2Start(IOService *that, IOService *provider);
+  mach_vm_address_t orgIOGA2Start {0};
+  
+  static bool wrapIORegEntrySetProperty(IORegistryEntry *that, const OSSymbol *aKey, OSObject *anObject);
+  using t_IORegEntrySetProperty = bool (*)(IORegistryEntry *that, const OSSymbol *aKey, OSObject *anObject);
+  t_IORegEntrySetProperty orgIORegEntrySetProperty {nullptr};
     
-  static bool verifyPluginsOnDisk(IOService *ioGA2);
+  static bool verifyPluginOnDisk(IOService *ioGA2);
   
   static bool nodeExistsAtPath(const char *path, vtype type);
-    
-  mach_vm_address_t orgIOGA2Start {0};
 };
 
 
