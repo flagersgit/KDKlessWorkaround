@@ -59,7 +59,7 @@ bool KDKLWA::verifyPluginOnDisk(IOService *ioGA2) {
   strcpy((char *)&pathbuf, "/System/Library/Extensions/", PATH_MAX);
   
   const char * thatClassName = ioGA2->getMetaClass()->getClassName();
-  if (strstr(thatClassName, "AMDRadeonX")) {
+  if (strstr(thatClassName, "AMDRadeonX") && !BaseDeviceInfo::get().cpuHasAvx2 && getKernelVersion() >= KernelVersion::Ventura) {
     DBGLOG(MODULE_SHORT, "Found AMD subclass of IOGraphicsAccelerator2 (%s); using lookup dict", thatClassName);
     isAMD = true;
     amdLookupDict = OSDynamicCast(OSDictionary, ADDPR(selfInstance)->getProperty("AMDClassToPluginMap"));
