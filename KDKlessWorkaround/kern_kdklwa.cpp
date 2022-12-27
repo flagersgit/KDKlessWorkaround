@@ -9,6 +9,7 @@
 #include <sys/vnode.h>
 #include <sys/syslimits.h>
 #include <Headers/kern_api.hpp>
+#include <Headers/kern_devinfo.hpp>
 #include "kern_kdklwa.hpp"
 
 static KDKLWA *callbackKDKLWA = nullptr;
@@ -59,7 +60,14 @@ bool KDKLWA::verifyPluginsOnDisk(IOService *ioGA2) {
   strcat((char *)&pathbuf, pluginProperty->getCStringNoCopy());
   strcat((char *)&pathbuf, ".bundle");
   
-  rval = dirExistsAtPath((char *)&pathbuf);
+  // Ensure native AMD stack doesn't start up on pre-AVX2 CPUs on Ventura+
+  if (strstr((char *)pathbuf, "AMD") && !BaseDeviceInfo::get().cpuHasAvx2 && getKernelVersion() >= KernelVersion::Ventura) {
+    strcat((char *)&pathbuf, "/Contents/MacOS/");
+    strcat((char *)&pathbuf, pluginProperty->getCStringNoCopy());
+    rval = nodeExistsAtPath((char *)&pathbuf, VREG);
+  } else {
+    rval = nodeExistsAtPath((char *)&pathbuf, VDIR);
+  }
   
   // Maybe check for OpenGL here too?
   
@@ -67,7 +75,7 @@ bool KDKLWA::verifyPluginsOnDisk(IOService *ioGA2) {
 }
 
 /* static */
-bool KDKLWA::dirExistsAtPath(const char *path) {
+bool KDKLWA::nodeExistsAtPath(const char *path, vtype type) {
   bool rval = true;
   vnode_t vnode = NULLVP;
   vfs_context_t ctxt = vfs_context_create(nullptr);
@@ -77,7 +85,7 @@ bool KDKLWA::dirExistsAtPath(const char *path) {
     SYSLOG(MODULE_SHORT, "failed to find directory at path: %s", path);
     rval = false;
   } else {
-    if (vnode_vtype(vnode) != VDIR)
+    if (vnode_vtype(vnode) != type)
       rval = false;
     vnode_put(vnode);
   }

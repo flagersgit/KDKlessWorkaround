@@ -35,7 +35,7 @@ private:
     
   static bool verifyPluginsOnDisk(IOService *ioGA2);
   
-  static bool dirExistsAtPath(const char *path);
+  static bool nodeExistsAtPath(const char *path, vtype type);
     
   mach_vm_address_t orgIOGA2Start {0};
 };
