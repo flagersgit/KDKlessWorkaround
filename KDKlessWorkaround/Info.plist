@@ -38,6 +38,18 @@
 				<string>AMDMTLBronzeDriver</string>
 				<key>AMDRadeonX4000_AMDEllesmereGraphicsAccelerator</key>
 				<string>AMDMTLBronzeDriver</string>
+				<key>AMDRadeonX4000_AMDFijiGraphicsAccelerator</key>
+				<string>AMDMTLBronzeDriver</string>
+				<key>AMDRadeonX4000_AMDHawaiiGraphicsAccelerator</key>
+				<string>AMDMTLBronzeDriver</string>
+				<key>AMDRadeonX4000_AMDPitcairnGraphicsAccelerator</key>
+				<string>AMDMTLBronzeDriver</string>
+				<key>AMDRadeonX4000_AMDTahitiGraphicsAccelerator</key>
+				<string>AMDMTLBronzeDriver</string>
+				<key>AMDRadeonX4000_AMDTongaGraphicsAccelerator</key>
+				<string>AMDMTLBronzeDriver</string>
+				<key>AMDRadeonX4000_AMDVerdeGraphicsAccelerator</key>
+				<string>AMDMTLBronzeDriver</string>
 				<key>AMDRadeonX5000_AMDVega10GraphicsAccelerator</key>
 				<string>AMDRadeonX5000MTLDriver</string>
 				<key>AMDRadeonX5000_AMDVega12GraphicsAccelerator</key>
